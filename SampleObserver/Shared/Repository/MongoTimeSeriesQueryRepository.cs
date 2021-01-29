@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace Shared.Repository
 {
-    public class MongoTimeSeriesQueryRepository : MongoTimeSeriesRepository, ITimeSeriesQueryRepository
+    public class MongoTimeSeriesQueryRepository : MongoRepository, ITimeSeriesQueryRepository
 
     {
         protected MongoTimeSeriesQueryRepository(ITenantContext tenantContext, IMongoClient client) : base(

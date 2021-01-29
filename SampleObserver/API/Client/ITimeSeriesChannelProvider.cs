@@ -1,6 +1,6 @@
 ﻿using Contracts.Interfaces;
 
-namespace SampleObserver.API.Client
+namespace API.Client
 {
     public interface ITimeSeriesChannelProvider : IGrpcChannelProvider
     {

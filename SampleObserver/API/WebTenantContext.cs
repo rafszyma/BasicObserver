@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace SampleObserver.API
+namespace API
 {
     public class WebTenantContext : ITenantContext
     {

@@ -1,22 +1,18 @@
 using System.IO;
+using API.Client;
 using API.Services;
+using Contracts;
 using Contracts.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using SampleObserver.API.Client;
-using SampleObserver.API.Services;
-using Shared;
 using Shared.Bootstrap;
 using Shared.Repository;
 
-namespace SampleObserver.API
+namespace API
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Contracts.Models;
 
-namespace SampleObserver.API.Services
+namespace API.Services
 {
     public interface ITimeSeriesService
     {

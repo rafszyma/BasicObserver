@@ -2,17 +2,17 @@
 using Contracts;
 using Grpc.Net.Client;
 
-namespace SampleObserver.API.Client
+namespace API.Client
 {
     public class TimeSeriesChannelProvider : ITimeSeriesChannelProvider
     {
         private GrpcChannel _channel;
 
-        private readonly IBasicConfiguration _configuration;
+        private readonly BasicConfiguration _configuration;
 
         private readonly HttpMessageHandler _tenantHttpHandler;
         
-        public TimeSeriesChannelProvider(IBasicConfiguration configuration,  ITenantHttpHandler tenantHttpHandler)
+        public TimeSeriesChannelProvider(BasicConfiguration configuration,  ITenantHttpHandler tenantHttpHandler)
         {
             _configuration = configuration;
             _tenantHttpHandler = tenantHttpHandler as HttpMessageHandler;

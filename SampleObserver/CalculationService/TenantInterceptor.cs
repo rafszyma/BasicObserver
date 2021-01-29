@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
-using CalculationService;
-using Contracts.Interfaces;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
 
-namespace Shared
+namespace CalculationService
 {
     public class TenantInterceptor : Interceptor
     {

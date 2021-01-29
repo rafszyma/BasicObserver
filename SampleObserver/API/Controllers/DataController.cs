@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
+using API.Services;
 using Contracts.Models;
 using Microsoft.AspNetCore.Mvc;
-using SampleObserver.API.Services;
 
-namespace SampleObserver.API.Controllers
+namespace API.Controllers
 {
     [ApiController]
     [Route("data")]

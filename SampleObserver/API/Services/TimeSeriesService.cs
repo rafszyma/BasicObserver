@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
+using API.Client;
 using CalculationService;
 using Contracts.Interfaces;
 using Contracts.Models;
-using SampleObserver.API.Client;
-using SampleObserver.API.Services;
 
 namespace API.Services
 {

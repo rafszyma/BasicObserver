@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Contracts;
 using Contracts.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +27,7 @@ namespace CalculationService
             services
                 .AddMongo(configProvider)
                 .AddConfigProvider(configProvider)
-                .AddScoped<ITimeSeriesCommandRepository, MongoTimeSeriesCommandRepository>()
+                .AddScoped<ITimeSeriesQueryRepository, MongoTimeSeriesQueryRepository>()
                 .AddScoped<ITenantContext, GrpcTenantContext>()
                 .AddGrpc(x => x.Interceptors.Add<TenantInterceptor>());
         }

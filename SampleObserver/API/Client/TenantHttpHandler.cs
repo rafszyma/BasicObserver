@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Contracts.Interfaces;
 
-namespace SampleObserver.API.Client
+namespace API.Client
 {
     public class TenantHttpHandler : DelegatingHandler, ITenantHttpHandler
     {
@@ -11,6 +11,7 @@ namespace SampleObserver.API.Client
         public TenantHttpHandler(ITenantContext tenantContext)
         {
             _tenantContext = tenantContext;
+            InnerHandler = new HttpClientHandler();
         }
         
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

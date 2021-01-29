@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace SampleObserver.API.Controllers
+namespace API.Controllers
 {
     [ApiController]
     [Route("health")]
