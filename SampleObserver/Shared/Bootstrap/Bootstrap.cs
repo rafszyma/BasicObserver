@@ -1,6 +1,4 @@
-﻿using System.IO;
-using Contracts;
-using Microsoft.Extensions.Configuration;
+﻿using Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 

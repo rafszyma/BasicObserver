@@ -7,6 +7,6 @@ namespace SampleObserver.API.Services
     {
         Task<(double average, double sum)> GetTimeSeriesStatsAsync(long? from, long? to);
 
-        Task SubmitTimeSeriesData(TimeSeriesRecord[] records);
+        Task SubmitTimeSeriesData(TimeSeriesModel[] records);
     }
 }

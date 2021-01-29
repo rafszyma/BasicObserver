@@ -1,5 +1,4 @@
-﻿using Contracts;
-using Contracts.Interfaces;
+﻿using Contracts.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
@@ -12,11 +11,7 @@ namespace SampleObserver.API
         {
             _accessor = accessor;
         }
-        
-        public string Tenant()
-        {
-            var tenant = (string)_accessor.HttpContext?.GetRouteData().Values["tenant"];
-            return tenant ?? string.Empty;
-        }
+
+        public string Tenant => (string)_accessor.HttpContext?.GetRouteData().Values["tenant"] ?? string.Empty;
     }
 }

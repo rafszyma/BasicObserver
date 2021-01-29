@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CalculationService.Repositories;
 using Contracts;
 using Contracts.Interfaces;
 using Contracts.Models;
@@ -13,19 +12,20 @@ namespace Shared.Repository
     {
         private readonly ITenantContext _tenantContext;
 
-        private readonly IMongoClient _client; 
+        private readonly IMongoClient _client;
+
         public MongoTimeSeriesRepository(ITenantContext tenantContext, IMongoClient client)
         {
             _tenantContext = tenantContext;
             _client = client;
         }
 
-        public async Task<IEnumerable<double>> GetTimeSeriesAsync(long? from, long? to)
+        public async Task<IEnumerable<double>> GetTimeSeriesAsync(long from, long to)
         {
             return (await GetTimeSeriesCollection().FindAsync(x => x.T > from && x.T < to)).Current.Select(x => x.V);
         }
 
-        public async Task SaveTimeSeriesAsync(params TimeSeriesRecord[] records)
+        public async Task SaveTimeSeriesAsync(params TimeSeriesModel[] records)
         {
             await GetTimeSeriesCollection().InsertManyAsync(records.Select(x => new TimeSeriesDocument
             {
@@ -34,9 +34,10 @@ namespace Shared.Repository
             }));
         }
 
+        // TODO make it more generic
         private IMongoCollection<TimeSeriesDocument> GetTimeSeriesCollection()
         {
-            return _client.GetDatabase(_tenantContext.Tenant())
+            return _client.GetDatabase(_tenantContext.Tenant)
                 .GetCollection<TimeSeriesDocument>(Collections.TimeSeries.ToString());
         }
     }

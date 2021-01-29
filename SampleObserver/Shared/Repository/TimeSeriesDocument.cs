@@ -1,4 +1,4 @@
-﻿namespace CalculationService.Repositories
+﻿namespace Shared.Repository
 {
     public class TimeSeriesDocument
     {

@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Contracts.Models;
 using Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
 using SampleObserver.API.Services;
@@ -8,23 +7,14 @@ using SampleObserver.API.Services;
 namespace SampleObserver.API.Controllers
 {
     [ApiController]
-    [Route("{tenant}/timeseries")]
+    [Route("{tenant}/stats")]
     public class TimeSeriesController : ControllerBase
     {
-
         private readonly ITimeSeriesService _service;
 
         public TimeSeriesController(ITimeSeriesService service)
         {
             _service = service;
-        }
-
-        [HttpPut]
-        [ProducesResponseType((int)HttpStatusCode.Accepted)]
-        public async Task<IActionResult> SubmitTimeSeries([FromBody]TimeSeriesRecord[] records)
-        {
-            await _service.SubmitTimeSeriesData(records);
-            return Accepted();
         }
 
         [HttpGet]

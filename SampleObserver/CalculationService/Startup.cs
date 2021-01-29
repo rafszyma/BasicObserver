@@ -27,7 +27,7 @@ namespace CalculationService
                 .AddMongo(configProvider)
                 .AddConfigProvider(configProvider)
                 .AddScoped<ITimeSeriesRepository, MongoTimeSeriesRepository>()
-                .AddGrpc();
+                .AddGrpc(x => x.Interceptors.Add<TenantInterceptor>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,8 +7,8 @@ namespace Contracts.Interfaces
     // As API is suppose to write (or is it?) and Service is suppose to read, we may want to split it in to 2 different interfaces.
     public interface ITimeSeriesRepository
     {
-        Task<IEnumerable<double>> GetTimeSeriesAsync(long? from, long? to);
+        Task<IEnumerable<double>> GetTimeSeriesAsync(long from, long to);
 
-        Task SaveTimeSeriesAsync(params TimeSeriesRecord[] records);
+        Task SaveTimeSeriesAsync(params TimeSeriesModel[] records);
     }
 }

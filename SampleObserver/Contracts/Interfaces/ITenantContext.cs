@@ -2,6 +2,6 @@
 {
     public interface ITenantContext
     {
-        string Tenant();
+        string Tenant { get; }
     }
 }
