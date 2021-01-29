@@ -1,21 +1,21 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using CalculationService.Repositories;
+using Contracts.Interfaces;
 using Grpc.Core;
 
 namespace CalculationService.Services
 {
     public class CalculationService : Calculate.CalculateBase
     {
-        private readonly IRepository _repository;
+        private readonly ITimeSeriesRepository _timeSeriesRepository;
 
-        public CalculationService(IRepository repository)
+        public CalculationService(ITimeSeriesRepository timeSeriesRepository)
         {
-            _repository = repository;
+            _timeSeriesRepository = timeSeriesRepository;
         }
         public override async Task<CalculateResponse> CalculateTimePeriod(CalculateRequest request, ServerCallContext context)
         {
-            var series = await _repository.GetTimeSeriesAsync(request.From, request.To);
+            var series = (await _timeSeriesRepository.GetTimeSeriesAsync(request.From, request.To)).ToArray();
             return new CalculateResponse
             {
                 Average = series.Average(),
