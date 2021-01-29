@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using Contracts.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 

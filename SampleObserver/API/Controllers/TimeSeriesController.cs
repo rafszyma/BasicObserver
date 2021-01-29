@@ -1,9 +1,10 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using Contracts;
+using Contracts.Models;
 using Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
-using SampleObserver.API.DataProvider;
+using SampleObserver.API.Services;
 
 namespace SampleObserver.API.Controllers
 {
@@ -20,6 +21,7 @@ namespace SampleObserver.API.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.Accepted)]
         public async Task<IActionResult> SubmitTimeSeries([FromBody]TimeSeriesRecord[] records)
         {
             await _service.SubmitTimeSeriesData(records);

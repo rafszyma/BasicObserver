@@ -1,5 +1,5 @@
 ﻿
-namespace Contracts
+namespace Contracts.Models
 {
     public class TimeSeriesRecord
     {

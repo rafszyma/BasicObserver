@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Contracts;
+using Contracts.Interfaces;
 
 namespace CalculationService.Repositories
 {
