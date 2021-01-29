@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Contracts;
 using Contracts.Models;
 using Contracts.Responses;
 using Microsoft.AspNetCore.Mvc;
