@@ -1,9 +1,13 @@
 using System.IO;
+using API.Services;
 using Contracts.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SampleObserver.API.Client;
@@ -35,14 +39,16 @@ namespace SampleObserver.API
             services
                 .AddMongo(configProvider)
                 .AddConfigProvider(configProvider)
-                .AddScoped<ITimeSeriesRepository, MongoTimeSeriesRepository>()
                 .AddScoped<ITimeSeriesChannelProvider, TimeSeriesChannelProvider>()
+                .AddScoped<ITimeSeriesCommandRepository, MongoTimeSeriesCommandRepository>()
                 .AddScoped<ITimeSeriesService, TimeSeriesService>()
                 .AddScoped<ITenantContext, WebTenantContext>()
+                .AddScoped<ITenantHttpHandler, TenantHttpHandler>()
                 .AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-                });
+                })
+                .AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -26,7 +26,8 @@ namespace CalculationService
             services
                 .AddMongo(configProvider)
                 .AddConfigProvider(configProvider)
-                .AddScoped<ITimeSeriesRepository, MongoTimeSeriesRepository>()
+                .AddScoped<ITimeSeriesCommandRepository, MongoTimeSeriesCommandRepository>()
+                .AddScoped<ITenantContext, GrpcTenantContext>()
                 .AddGrpc(x => x.Interceptors.Add<TenantInterceptor>());
         }
 

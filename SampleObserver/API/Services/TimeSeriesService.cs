@@ -3,18 +3,20 @@ using CalculationService;
 using Contracts.Interfaces;
 using Contracts.Models;
 using SampleObserver.API.Client;
+using SampleObserver.API.Services;
 
-namespace SampleObserver.API.Services
+namespace API.Services
 {
     public class TimeSeriesService : ITimeSeriesService
     {
         private readonly Calculate.CalculateClient _client;
 
-        private readonly ITimeSeriesRepository _repository;
+        private readonly ITimeSeriesCommandRepository _commandRepository;
 
-        public TimeSeriesService(ITimeSeriesChannelProvider channelProvider, ITimeSeriesRepository repository)
+        public TimeSeriesService(ITimeSeriesChannelProvider channelProvider,
+            ITimeSeriesCommandRepository commandRepository)
         {
-            _repository = repository;
+            _commandRepository = commandRepository;
             _client = new Calculate.CalculateClient(channelProvider.GetChannel());
         }
 
@@ -30,7 +32,7 @@ namespace SampleObserver.API.Services
 
         public async Task SubmitTimeSeriesData(TimeSeriesModel[] records)
         {
-            await _repository.SaveTimeSeriesAsync(records);
+            await _commandRepository.SaveTimeSeriesAsync(records);
         }
     }
 }

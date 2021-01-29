@@ -7,15 +7,15 @@ namespace CalculationService.Services
 {
     public class CalculationService : Calculate.CalculateBase
     {
-        private readonly ITimeSeriesRepository _timeSeriesRepository;
+        private readonly ITimeSeriesQueryRepository _timeSeriesQueryRepository;
 
-        public CalculationService(ITimeSeriesRepository timeSeriesRepository)
+        public CalculationService(ITimeSeriesQueryRepository timeSeriesQueryRepository)
         {
-            _timeSeriesRepository = timeSeriesRepository;
+            _timeSeriesQueryRepository = timeSeriesQueryRepository;
         }
         public override async Task<CalculateResponse> CalculateTimePeriod(CalculateRequest request, ServerCallContext context)
         {
-            var series = (await _timeSeriesRepository.GetTimeSeriesAsync(request.From, request.To)).ToArray();
+            var series = (await _timeSeriesQueryRepository.GetTimeSeriesAsync(request.From, request.To)).ToArray();
             return new CalculateResponse
             {
                 Average = series.Average(),
