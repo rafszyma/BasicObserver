@@ -20,14 +20,21 @@ func main() {
 
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	clientOptions := options.Client().ApplyURI(os.Getenv("MongoUrl"))
+	credentials := &options.Credential{
+		Username: os.Getenv("MongoUsername"),
+		Password: os.Getenv("MongoPassword"),
+	}
+
+	clientOptions.Auth = credentials
 	client, _ := mongo.Connect(ctx, clientOptions)
 
 	server := calculations.NewServer(client)
 	grpcServer := grpc.NewServer()
 
 	calculations.RegisterCalculateServer(grpcServer, server)
-
+	log.Print("Server is running")
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve gRPC server")
 	}
+
 }
