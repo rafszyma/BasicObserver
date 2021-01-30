@@ -2,7 +2,7 @@
 using Contracts.Interfaces;
 using MongoDB.Driver;
 
-namespace Shared.Repository
+namespace Shared.Persistence
 {
     public abstract class SharedMongoRepository
     {

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using CalculationService;
 using Contracts.Interfaces;
 using Grpc.Core;
 
-namespace CalculationService.Services
+namespace Service.Services
 {
     public class CalculationService : Calculate.CalculateBase
     {

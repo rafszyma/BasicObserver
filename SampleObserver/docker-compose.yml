@@ -7,13 +7,16 @@ services:
       dockerfile: API/Dockerfile
     depends_on:
       - mongo
-      - timeseries-service
     ports:
       - '2601:80'
+    networks: 
+      - timeseries-network
     environment:
-        ## Api Specific
-      - 'db:users=kk'
-
+      - 'Mongo:Url=101.101.101.1:27017'
+      - 'Mongo:Login=root'
+      - 'Mongo:Password=example'
+      - 'CalculationServiceUrl=https://101.101.101.1:2602'
+      
       
   timeseries-service:
     container_name: timeseries-service
@@ -23,10 +26,18 @@ services:
     depends_on:
       - mongo
     ports:
-      - '2602:440'
+      - '2602:443'
+    networks: 
+      - timeseries-network
     environment:
-        ## Api Specific
-      - 'db:authorizationserver=kk'
+      - 'Mongo:Url=101.101.101.1:27017'
+      - 'Mongo:Login=root'
+      - 'Mongo:Password=example'
+      - 'ASPNETCORE_URLS=https://+:443'
+      - 'ASPNETCORE_Kestrel__Certificates__Default__Path=/app/Infrastructure/Certificate/devcert.pfx'
+      - 'ASPNETCORE_Kestrel__Certificates__Default__Password=secret'
+    volumes:
+      - '.\cert\:/app/Infrastructure/Certificate'
 
 ## External
   mongo:
@@ -34,6 +45,8 @@ services:
     restart: always
     ports:
       - 27017:27017
+    networks: 
+      - timeseries-network
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -48,4 +61,5 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
   
 networks:
-  default:
+  timeseries-network:
+    external: true

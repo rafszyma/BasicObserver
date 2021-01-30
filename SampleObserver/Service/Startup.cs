@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Shared;
 using Shared.Bootstrap;
-using Shared.Repository;
+using Shared.Persistence;
 
-namespace CalculationService
+namespace Service
 {
     public class Startup
     {

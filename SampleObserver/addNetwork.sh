@@ -1,0 +1,2 @@
+#!/bin/sh
+if docker network ls | grep "timeseries-network" ; then echo "found network"; else docker network create --driver bridge --subnet 101.101.101.0/24 --gateway 101.101.101.1 --opt com.docker.network.bridge.name:timeseries-network timeseries-network; fi

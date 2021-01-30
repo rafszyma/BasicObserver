@@ -11,7 +11,11 @@ namespace API.Client
         public TenantHttpHandler(ITenantContext tenantContext)
         {
             _tenantContext = tenantContext;
-            InnerHandler = new HttpClientHandler();
+            InnerHandler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback =
+                    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+            };
         }
         
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

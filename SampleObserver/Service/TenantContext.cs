@@ -1,6 +1,6 @@
 ﻿using Contracts.Interfaces;
 
-namespace CalculationService
+namespace Service
 {
     public class GrpcTenantContext : ITenantContext
     {

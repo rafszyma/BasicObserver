@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Contracts.Interfaces;
 using MongoDB.Driver;
 
-namespace Shared.Repository
+namespace Shared.Persistence
 {
     public class MongoTimeSeriesQueryRepository : SharedMongoRepository, ITimeSeriesQueryRepository
     {

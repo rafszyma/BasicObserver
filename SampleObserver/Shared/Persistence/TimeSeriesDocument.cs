@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Shared.Repository
+namespace Shared.Persistence
 {
     public class TimeSeriesDocument
     {

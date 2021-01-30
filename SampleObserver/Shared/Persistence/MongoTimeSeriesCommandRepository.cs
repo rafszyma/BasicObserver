@@ -4,7 +4,7 @@ using Contracts.Interfaces;
 using Contracts.Models;
 using MongoDB.Driver;
 
-namespace Shared.Repository
+namespace Shared.Persistence
 {
     public class MongoTimeSeriesCommandRepository : SharedMongoRepository, ITimeSeriesCommandRepository
     {

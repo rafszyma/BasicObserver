@@ -3,7 +3,7 @@ using Contracts.Interfaces;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
 
-namespace CalculationService
+namespace Service
 {
     public class TenantInterceptor : Interceptor
     {
