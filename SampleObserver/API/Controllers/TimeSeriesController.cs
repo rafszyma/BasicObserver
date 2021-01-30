@@ -19,7 +19,7 @@ namespace API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(TimeSeriesStatsResponse), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetStatistics([FromQuery]long from, [FromQuery]long to)
+        public async Task<IActionResult> GetStatistics([FromQuery]long? from, [FromQuery]long? to)
         {
             var (average, sum) = await _service.GetTimeSeriesStatsAsync(from, to);
             return Ok(new TimeSeriesStatsResponse

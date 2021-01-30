@@ -4,13 +4,13 @@ using MongoDB.Driver;
 
 namespace Shared.Repository
 {
-    public abstract class MongoRepository
+    public abstract class SharedMongoRepository
     {
         private readonly ITenantContext _tenantContext;
 
         private readonly IMongoClient _client;
 
-        protected MongoRepository(ITenantContext tenantContext, IMongoClient client)
+        protected SharedMongoRepository(ITenantContext tenantContext, IMongoClient client)
         {
             _tenantContext = tenantContext;
             _client = client;
@@ -18,7 +18,6 @@ namespace Shared.Repository
 
         protected IMongoCollection<TimeSeriesDocument> GetTimeSeriesCollection(string tenant = null)
         {
-            
             return _client.GetDatabase(tenant ?? _tenantContext.Tenant)
                 .GetCollection<TimeSeriesDocument>(Collections.TimeSeries.ToString());
         }

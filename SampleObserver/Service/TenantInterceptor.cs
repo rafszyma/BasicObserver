@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Contracts.Interfaces;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
 
@@ -6,9 +7,9 @@ namespace CalculationService
 {
     public class TenantInterceptor : Interceptor
     {
-        private readonly GrpcTenantContext _tenantContext;
+        private readonly ITenantContext _tenantContext;
 
-        public TenantInterceptor(GrpcTenantContext tenantContext)
+        public TenantInterceptor(ITenantContext tenantContext)
         {
             _tenantContext = tenantContext;
         }

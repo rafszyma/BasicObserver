@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Contracts.Interfaces;
 using Grpc.Core;
@@ -13,6 +14,7 @@ namespace CalculationService.Services
         {
             _timeSeriesQueryRepository = timeSeriesQueryRepository;
         }
+        
         public override async Task<CalculateResponse> CalculateTimePeriod(CalculateRequest request, ServerCallContext context)
         {
             var series = (await _timeSeriesQueryRepository.GetTimeSeriesAsync(request.From, request.To)).ToArray();

@@ -12,6 +12,11 @@ namespace API
             _accessor = accessor;
         }
 
-        public string Tenant => (string)_accessor.HttpContext?.GetRouteData().Values["tenant"] ?? string.Empty;
+        // TODO fix it by DI
+        public string Tenant
+        {
+            get => (string)_accessor.HttpContext?.GetRouteData().Values["tenant"] ?? string.Empty;
+            set => throw new System.NotImplementedException();
+        }
     }
 }

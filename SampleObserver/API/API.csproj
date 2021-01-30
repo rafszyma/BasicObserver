@@ -23,14 +23,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Protobuf Include="..\CalculationService\Protos\calculate.proto">
-            <GrpcServices>Client</GrpcServices>
-            <Access>Public</Access>
-            <ProtoCompile>True</ProtoCompile>
-            <CompileOutputs>True</CompileOutputs>
-            <OutputDir>obj\Debug\netcoreapp3.1\</OutputDir>
-            <Generator>MSBuild:Compile</Generator>
-        </Protobuf>
+      <Protobuf Include="..\Service\Protos\calculate.proto">
+        <GrpcServices>Client</GrpcServices>
+        <Access>Public</Access>
+        <ProtoCompile>True</ProtoCompile>
+        <CompileOutputs>True</CompileOutputs>
+        <OutputDir>obj\Debug\netcoreapp3.1\</OutputDir>
+        <Generator>MSBuild:Compile</Generator>
+        <Link>Protos\calculate.proto</Link>
+      </Protobuf>
     </ItemGroup>
 
 </Project>
