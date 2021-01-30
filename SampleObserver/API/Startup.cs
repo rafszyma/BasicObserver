@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text.Json.Serialization;
 using API.Client;
 using API.Services;
 using Contracts;
@@ -26,7 +27,10 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(opt =>
+            {
+                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             var configProvider = new BasicConfiguration();
             new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", true, true)
@@ -43,6 +47,8 @@ namespace API
                 .AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+                    c.DescribeAllParametersInCamelCase();
+                    
                 })
                 .AddHttpContextAccessor();
         }
@@ -54,10 +60,11 @@ namespace API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+                });
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

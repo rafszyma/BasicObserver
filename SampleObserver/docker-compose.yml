@@ -12,11 +12,11 @@ services:
     networks: 
       - timeseries-network
     environment:
+      - 'ASPNETCORE_ENVIRONMENT=Development'
       - 'Mongo:Url=101.101.101.1:27017'
       - 'Mongo:Login=root'
       - 'Mongo:Password=example'
       - 'CalculationServiceUrl=https://101.101.101.1:2602'
-      
       
   timeseries-service:
     container_name: timeseries-service
