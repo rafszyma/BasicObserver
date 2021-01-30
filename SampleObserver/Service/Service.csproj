@@ -4,6 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>Service</AssemblyName>
         <RootNamespace>Service</RootNamespace>
+        <UserSecretsId>5236f236-565d-4a21-b215-b92ec5eeda51</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,6 +19,7 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
         <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
         <PackageReference Include="MongoDB.Driver.Core" Version="2.11.6" />
     </ItemGroup>
