@@ -41,6 +41,7 @@ services:
 
 ## External
   mongo:
+    container_name: timeseries-mongo
     image: mongo
     restart: always
     ports:
@@ -52,6 +53,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
 
   mongo-express:
+    container_name: timeseries-mongo-express
     image: mongo-express
     restart: always
     ports:
