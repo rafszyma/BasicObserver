@@ -1,6 +1,33 @@
 version: "3.4"
 services:
+  timeseries-api:
+    container_name: timeseries-api
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    depends_on:
+      - mongo
+      - timeseries-service
+    ports:
+      - '2601:80'
+    environment:
+        ## Api Specific
+      - 'db:users=kk'
+
       
+  timeseries-service:
+    container_name: timeseries-service
+    build:
+      context: .
+      dockerfile: Service/Dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - '2602:440'
+    environment:
+        ## Api Specific
+      - 'db:authorizationserver=kk'
+
 ## External
   mongo:
     image: mongo
