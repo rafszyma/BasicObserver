@@ -38,6 +38,22 @@ services:
       - 'ASPNETCORE_Kestrel__Certificates__Default__Password=secret'
     volumes:
       - '.\cert\:/app/Infrastructure/Certificate'
+      
+  timeseries-go-service:
+    container_name: timeseries-go-service
+    build:
+      context: .
+      dockerfile: GoService/Dockerfile
+    depends_on:
+      - mongo
+    ports:
+      - '2603:8000'
+    networks: 
+      - timeseries-network
+    environment:
+      - 'MongoUrl=mongodb://101.101.101.1:27017'
+      - 'MongoUsername=root'
+      - 'MongoPassword=example'
 
 ## External
   mongo:
