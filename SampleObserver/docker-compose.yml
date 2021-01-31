@@ -16,7 +16,7 @@ services:
       - 'Mongo:Url=101.101.101.1:27017'
       - 'Mongo:Login=root'
       - 'Mongo:Password=example'
-      - 'CalculationServiceUrl=https://101.101.101.1:2602'
+      - 'CalculationServiceUrl=http://101.101.101.1:2603'
       
   timeseries-service:
     container_name: timeseries-service
@@ -42,12 +42,12 @@ services:
   timeseries-go-service:
     container_name: timeseries-go-service
     build:
-      context: .
-      dockerfile: GoService/Dockerfile
+      context: GoService
+      dockerfile: Dockerfile
     depends_on:
       - mongo
     ports:
-      - '2603:8000'
+      - '2603:9000'
     networks: 
       - timeseries-network
     environment:
